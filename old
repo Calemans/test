@@ -1,0 +1,430 @@
+/*******************************************************/
+// P5.play: t01_create_sprite
+// Create a sprite
+// Written by Caleb Monk
+/*******************************************************/
+// Preloads images
+function preload() {
+    hampta1 = loadImage("https://codehs.com/uploads/7191b0beb0e43c6a70b4beee561afd76")
+    hampta2 = loadImage("https://codehs.com/uploads/433514961f87d638db0abfd49e0bd5ec")
+    hampta3 = loadImage("https://codehs.com/uploads/c87810082deb2175bb37541665daf796")
+    hampta4 = loadImage("https://codehs.com/uploads/c7e186048622e78f0481726c7537d4d2")
+    hampta5 = loadImage("https://codehs.com/uploads/11911c81245d4d778fa9ef2c3ae27d23")
+    hampta6 = loadImage("https://codehs.com/uploads/a05b17bc2c5f9a805a3b17c2e0c5c146")
+    hampta7 = loadImage("https://codehs.com/uploads/307bcf413c9ad1243bc2a627b629baa1")
+    hampta8 = loadImage("https://codehs.com/uploads/62316fc2b365178000f7850adaf55fce")
+    hampta9 = loadImage("https://codehs.com/uploads/0c375aceab3cfcf0ea3a10e26e5f33fc")
+    hampta10 = loadImage("https://codehs.com/uploads/3e8a417a1c033996a8cece7bb3f39cbd")
+    hampta11 = loadImage("https://codehs.com/uploads/30a30fed8a421f01f022df4cce69054c")
+    hampta12 = loadImage("https://codehs.com/uploads/409d8b92cea5d100c22704d82f3b8a94")
+    hampta13 = loadImage("https://codehs.com/uploads/3a73823b12191a3dfca87fb1ee9eafe7")
+    hampta14 = loadImage("https://codehs.com/uploads/6a5e0a630959258e74b0ff7bbf625cc5")
+    hampta15 = loadImage("https://codehs.com/uploads/43f6195e227a15d3bf435bdc0d83d221")
+    StartImg = loadImage("https://codehs.com/uploads/49c2abacb489e216374564b98829e837")
+    pan = loadImage("https://codehs.com/uploads/a8a3552bc42852a915e48ab1bf8726e7")
+}
+
+const SCREEN_WIDTH = 2000;
+const SCREEN_HEIGHT = 910;
+const SIDE_HEIGHT = 666;
+const SIDE_WIDTH = 4;
+const ROOF_WIDTH = 1500;
+const ROOF_HEIGHT = 4;
+const MOLE1_SIZE = 100;
+const MOLE6_SIZE = 180;
+const MOLE7_SIZE = 120;
+const MOLE8_SIZE = 150;
+const MOLE13_SIZE = 170;
+var time = 1200;
+var score = 0;
+var screenSelector = "start"
+/*******************************************************/
+// setup()
+/*******************************************************/
+function setup() {
+    cnv= createCanvas(SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    wallsGroup = new Group();
+    spritesGroup = new Group();
+    
+    //creates the walls for the game
+    up =  createSprite(SCREEN_WIDTH/2, 145, ROOF_WIDTH, ROOF_HEIGHT, 'n');
+    up.color = color("black");
+    wallsGroup.add(up);
+    
+    down =  createSprite(SCREEN_WIDTH/2, 808, ROOF_WIDTH, ROOF_HEIGHT, 'n');
+    down.color = color("black");
+    wallsGroup.add(down);
+    
+    Left =  createSprite(250, 476, ROOF_HEIGHT, SIDE_WIDTH, 'n');
+    Left.color = color("black");
+    Left.h = SIDE_HEIGHT;
+    wallsGroup.add(Left);
+    
+    right =  createSprite(1750, 476, ROOF_HEIGHT, SIDE_WIDTH, 'n');
+    right.color = color("black");
+    right.h = SIDE_HEIGHT;
+    wallsGroup.add(right);
+    
+    one =  createSprite(1450, 476, ROOF_HEIGHT, SIDE_WIDTH, 'n');
+    one.color = color("black");
+    one.h = SIDE_HEIGHT;
+    wallsGroup.add(one);
+    
+    two =  createSprite(1150, 476, ROOF_HEIGHT, SIDE_WIDTH, 'n');
+    two.color = color("black");
+    two.h = SIDE_HEIGHT;
+    wallsGroup.add(two);
+    
+    three =  createSprite(850, 476, ROOF_HEIGHT, SIDE_WIDTH, 'n');
+    three.color = color("black");
+    three.h = SIDE_HEIGHT;
+    wallsGroup.add(three);
+    
+    four =  createSprite(550, 476, ROOF_HEIGHT, SIDE_WIDTH, 'n');
+    four.color = color("black");
+    four.h = SIDE_HEIGHT;
+    wallsGroup.add(four);
+    
+    upone =  createSprite(SCREEN_WIDTH/2, 375, ROOF_WIDTH, ROOF_HEIGHT, 'n');
+    upone.color = color("black");
+    wallsGroup.add(upone);
+    
+    uptwo =  createSprite(SCREEN_WIDTH/2, 600, ROOF_WIDTH, ROOF_HEIGHT, 'n');
+    uptwo.color = color("black");
+    wallsGroup.add(uptwo);
+    
+    //creates the moles for the game
+    mole1 = createSprite(1000, 500, "k");
+    mole1.img = src="https://codehs.com/uploads/7191b0beb0e43c6a70b4beee561afd76";
+    spritesGroup.add(mole1);
+    
+    mole2 = createSprite(400, 500, "k");
+    mole2.img = src="https://codehs.com/uploads/433514961f87d638db0abfd49e0bd5ec";
+    spritesGroup.add(mole2);
+    
+    mole3 = createSprite(700, 500, "k");
+    mole3.img = src="https://codehs.com/uploads/c87810082deb2175bb37541665daf796";
+    spritesGroup.add(mole3);
+    
+    mole4 = createSprite(1300, 500, "k");
+    mole4.img = src="https://codehs.com/uploads/c7e186048622e78f0481726c7537d4d2";
+    spritesGroup.add(mole4);
+    
+    mole5 = createSprite(1600, 500, "k");
+    mole5.img = src="https://codehs.com/uploads/11911c81245d4d778fa9ef2c3ae27d23";
+    spritesGroup.add(mole5);
+    
+    mole6 = createSprite(1000, 250, "k");
+    mole6.img = src="https://codehs.com/uploads/a05b17bc2c5f9a805a3b17c2e0c5c146";
+    spritesGroup.add(mole6);
+    
+    mole7 = createSprite(400, 250, "k");
+    mole7.img = src="https://codehs.com/uploads/307bcf413c9ad1243bc2a627b629baa1";
+    spritesGroup.add(mole7);
+    
+    mole8 = createSprite(700, 250, "k");
+    mole8.img = src="https://codehs.com/uploads/62316fc2b365178000f7850adaf55fce";
+    spritesGroup.add(mole8);
+    
+    mole9 = createSprite(1300, 250, "k");
+    mole9.img = src="https://codehs.com/uploads/0c375aceab3cfcf0ea3a10e26e5f33fc";
+    spritesGroup.add(mole9);
+    
+    mole10 = createSprite(1600, 250, "k");
+    mole10.img = src="https://codehs.com/uploads/3e8a417a1c033996a8cece7bb3f39cbd";
+    spritesGroup.add(mole10);
+    
+    mole11 = createSprite(1000, 700, "k");
+    mole11.img = src="https://codehs.com/uploads/30a30fed8a421f01f022df4cce69054c";
+    spritesGroup.add(mole11);
+    
+    mole12 = createSprite(400, 700, "k");
+    mole12.img = src="https://codehs.com/uploads/409d8b92cea5d100c22704d82f3b8a94";
+    spritesGroup.add(mole12);
+    
+    mole13 = createSprite(700, 700, "k");
+    mole13.img = src="https://codehs.com/uploads/3a73823b12191a3dfca87fb1ee9eafe7";
+    spritesGroup.add(mole13);
+    
+    mole14 = createSprite(1300, 700, "k");
+    mole14.img = src="https://codehs.com/uploads/6a5e0a630959258e74b0ff7bbf625cc5";
+    spritesGroup.add(mole14);
+    
+    mole15 = createSprite(1600, 700, "k");
+    mole15.img = src="https://codehs.com/uploads/43f6195e227a15d3bf435bdc0d83d221";
+    spritesGroup.add(mole15);
+    
+    //changes the cursor into a pan
+    cur = createSprite(100, 100, "n");
+	cur.d = 30;
+	cur.img = src="https://codehs.com/uploads/a8a3552bc42852a915e48ab1bf8726e7";
+	cur.scale = .25;
+	
+	//creates the restart button
+	tri = createSprite(800, height/2, 50, 'k');
+    tri.color = color("green");
+    
+    //creates the start button
+    button = createSprite(950, 500, "k");
+    button.color = color("green");
+    button.img = src="https://codehs.com/uploads/49c2abacb489e216374564b98829e837"
+    StartImg.resize(50, 50);
+    
+	mouse.visible = false;
+	spritesGroup.visible = false;
+    mole1.visible = true;
+}
+/*******************************************************/
+// draw()
+/*******************************************************/
+function draw() {
+    if(screenSelector=="game"){
+        gameScreen();
+    }else if(screenSelector=="end"){
+        endScreen();
+    }else if(screenSelector=="start"){
+        startScreen();
+    }else{
+         text("no!!!!!", 50, 50);
+         console.log("wrong screen")
+    }
+    //changes game screen to end screen when 'time' = 0
+    if(time == 0){
+        screenSelector = "end";
+    }
+    
+    //makes the pan show on the cursor
+	cur.moveTowards(mouse, 1);
+	
+	//debugging
+	if (kb.pressing('d')) allSprites.debug = true;
+}
+
+//statrt screen
+function startScreen(){
+    background("green");
+    allSprites.visible = false;
+    mouse.visible = true;
+    button.visible = true;
+    
+    textSize(128);
+    fill(255);
+    stroke(0);
+    strokeWeight(4);
+    text("Welcome to game", 450, 350);
+    
+    textSize(64);
+    fill(255);
+    stroke(0);
+    strokeWeight(4);
+    text("Click square to start", 650, 450);
+    
+    textSize(32);
+    fill(255);
+    stroke(0);
+    strokeWeight(4);
+    text("(Click center of hamster to squish.)", 100, 800);
+}
+
+//gamescreen
+function gameScreen(){
+    background("pink");
+    time--;
+    tri.visible = false;
+    wallsGroup.visible = true;
+    cur.visible = true;
+    mouse.visible = false;
+    
+    textSize(32);
+    fill(255);
+    stroke(0);
+    strokeWeight(4);
+    text("Timer " + time, 50, 50);
+    
+    textSize(32);
+    fill(255);
+    stroke(0);
+    strokeWeight(4);
+    text("Score " + score, 50, 100);
+    
+}
+
+//end screen
+function endScreen(){
+    background("blue");
+    allSprites.visible = false;
+    mouse.visible = true;
+    tri.visible = true;
+    time = 1200;
+    
+    textSize(50);
+    fill(255);
+    stroke(0);
+    strokeWeight(4);
+    text("No time?", 50, 50);
+    
+    textSize(50);
+    fill(255);
+    stroke(0);
+    strokeWeight(4);
+    text("Score " + score, 50, 100);
+    
+    textSize(64);
+    fill(255);
+    stroke(0);
+    strokeWeight(4);
+    text("press circle to restart", 500, 400);
+}
+
+function mousePressed() {
+    //if player clicks mole1-15 does the pop up thingy
+    if(mole1.mouse.pressing()){
+        if (mole1.visible == true) {
+            moleWakeyWakey();
+            console.log("hit1");
+        }
+        mole1.visible = false;
+    }
+    if(mole2.mouse.pressing()){
+        if (mole2.visible == true) {
+            moleWakeyWakey();
+            console.log("hit2");
+        }
+        mole2.visible = false;
+    }
+    if(mole3.mouse.pressing()){
+        if (mole3.visible == true) {
+            moleWakeyWakey();
+            console.log("hit3");
+        }
+        mole3.visible = false;
+    }
+    if(mole4.mouse.pressing()){
+        if (mole4.visible == true) {
+            moleWakeyWakey();
+            console.log("hit4");
+        }
+        mole4.visible = false;
+    }
+    if(mole5.mouse.pressing()){
+        if (mole5.visible == true) {
+            moleWakeyWakey();
+            console.log("hit5");
+        }
+        mole5.visible = false;
+    }
+    if(mole6.mouse.pressing()){
+        if (mole6.visible == true) {
+            moleWakeyWakey();
+            console.log("hit6");
+        }
+        mole6.visible = false;
+    }
+    if(mole7.mouse.pressing()){
+        if (mole7.visible == true) {
+            moleWakeyWakey();
+            console.log("hit7");
+        }
+        mole7.visible = false;
+    }
+    if(mole8.mouse.pressing()){
+        if (mole8.visible == true) {
+            moleWakeyWakey();
+            console.log("hit8");
+        }
+        mole8.visible = false;
+    }
+    if(mole9.mouse.pressing()){
+        if (mole9.visible == true) {
+            moleWakeyWakey();
+            console.log("hit9");
+        }
+        mole9.visible = false;
+    }
+    if(mole10.mouse.pressing()){
+        if (mole10.visible == true) {
+            moleWakeyWakey();
+            console.log("hit10");
+        }
+        mole10.visible = false;
+    }
+    if(mole11.mouse.pressing()){
+        if (mole11.visible == true) {
+            moleWakeyWakey();
+            console.log("hit11");
+        }
+        mole11.visible = false;
+    }
+    if(mole12.mouse.pressing()){
+        if (mole12.visible == true) {
+            moleWakeyWakey();
+            console.log("hit12");
+        }
+        mole12.visible = false;
+    }
+    if(mole13.mouse.pressing()){
+        if (mole13.visible == true) {
+            moleWakeyWakey();
+            console.log("hit13");
+        }
+        mole13.visible = false;
+    }
+    if(mole14.mouse.pressing()){
+        if (mole14.visible == true) {
+            moleWakeyWakey();
+            console.log("hit14");
+        }
+        mole14.visible = false;
+    }
+    if(mole15.mouse.pressing()){
+        if (mole15.visible == true) {
+            moleWakeyWakey();
+            console.log("hit15");
+        }
+        mole15.visible = false;
+    }
+    //security if no mole pop up
+    //makes mole1 pop up if no othe ones do
+    if(mole1.visible == false && mole2.visible == false && mole3.visible == false && mole4.visible == false && mole5.visible == false && mole6.visible == false && mole7.visible == false && mole8.visible == false && mole9.visible == false && mole10.visible == false && mole11.visible == false && mole12.visible == false && mole13.visible == false && mole14.visible == false && mole15.visible == false){
+        mole1.visible = true;
+    }
+    //game restart button
+    if(tri.mouse.pressing()){
+    mole1.visible = true;
+    screenSelector = "game";
+    score = 0;
+    }
+    //start game button
+    if(button.mouse.pressing()){
+    mole1.visible = true;
+    button.visible = false;
+    score = 0;
+    button.remove();
+    screenSelector = "game";
+    }
+}
+
+//makes the moles appear
+//each mole has a chance to appear
+function moleWakeyWakey(){
+    mole1.visible = random() < 0.15;
+    mole2.visible = random() < 0.15;
+    mole3.visible = random() < 0.15;
+    mole4.visible = random() < 0.15;
+    mole5.visible = random() < 0.15;
+    mole6.visible = random() < 0.15;
+    mole7.visible = random() < 0.15;
+    mole8.visible = random() < 0.15;
+    mole9.visible = random() < 0.15;
+    mole10.visible = random() < 0.15;
+    mole11.visible = random() < 0.15;
+    mole12.visible = random() < 0.15;
+    mole13.visible = random() < 0.15;
+    mole14.visible = random() < 0.15;
+    mole15.visible = random() < 0.15;
+    score = (score + 1);
+}
+/*******************************************************/
+//  END OF APP
+/*******************************************************/
